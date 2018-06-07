@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn to play with YouTube</title>
+    <!-- font link -->
+    <link href="https://fonts.googleapis.com/css?family=Vidaloka" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet"> -->
+    <!-- bootstrap link -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+        crossorigin="anonymous">
+    <!-- style.css -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <!-- animate.css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css">
+    <!--Firebase-->
+    <script src="https://www.gstatic.com/firebasejs/5.0.3/firebase.js"></script>
+    <!-- Bootstrap js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="jumbotron-fluid">
+        <div class="container">
+            <h1 class="animated rollIn">VIKI (Virtual Internet Keyboard Instructor)</h1>
+            <p>She's no SIRI, but hey, there's potential.</p>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+
+            <div class="navbar-nav">
+                <a class="nav-item nav-link active" href="index.html">Home
+                    <span class="sr-only">(current)</span>
+                </a>
+                <a class="nav-item nav-link" href="assets/html/about.html">About</a>
+                <a class="nav-item nav-link" href="assets/html/playground.html">Playground</a>
+                <a class="nav-item nav-link" href="assets/html/leaderboard.html">Leaderboard</a>
+                <a class="nav-item nav-link" href="assets/html/resources.html">Resources</a>
+            </div>
+        </div>
+    </nav>
+
+
+    <div id="wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2"></div>
+                <div class="col-lg-8">
+                    <form>
+                        <h2>First, tell us about you!</h2>
+                        <div class="form-group">
+                            <label for="user-name-input">What is your name?</label>
+                            <input type="text" class="form-control" id="user-name-input">
+                        </div>
+                        <div class="form-group">
+                            <label for="level-input">Current Skill Level</label>
+                            <select class="form-control" id="level-input">
+                                <option>beginner</option>
+                                <option>intermediate</option>
+                                <option>advanced (Why are you here???!!!)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="song-input">What songs would you like to see?</label>
+                            <input type="text" class="form-control" id="song-input">
+                        </div>
+                        <div class="form-group">
+                            <label for="fav-input">Who is your favorite musician?</label>
+                            <input type="text" class="form-control" id="fav-input">
+                        </div>
+                        <button type="submit" id="add-user-btn" class="btn">Submit</button>
+                        <div class="alert alert-info" role="alert">
+                            Your name will be added to our
+                            <a href="assets/html/leaderboard.html" class="alert-link">Leaderboard</a>. Check out our list of past visitors.
+                        </div>
+                    </form>
+                </div>
+                <div class="col-lg-2"></div>
+            </div>
+        </div>
+
+        <div class="fixed-bottom">
+            <footer>
+                <div class="card">
+                    <div class="card-body">
+                        <blockquote class="blockquote mb-0">
+                            <p>“I’ve been imitated so well I’ve heard people copy my mistakes.”</p>
+                            <footer class="blockquote-footer">Jimi Hendrix</cite>
+                            </footer>
+                        </blockquote>
+                    </div>
+                </div>
+            </footer>
+        </div>
+
+    </div>
+
+
+    <div id="subwrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7">
+                    <div class="player-container">
+                        <div id="player"></div>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div id="key-reminders">
+                        <!-- used breaks instead of list, because the styling on the keyboard uses lists -->
+                        <strong>
+                            <h2>Click play to begin!</h2>
+                            <h4>You have two options to make sounds with VIKI!</h4>
+                            <p>1) Use the computer keyboard with the key provided below. </p>
+                            <p>OR</p>
+                            <p>2) Click directly on the piano keys. </p>
+                            <p>Follow along and enjoy!</p>
+                        </strong>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="key-container">
+                        <div id="keys">
+                            <div class="dropdown">
+                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                    Keyboard Sounds
+                                </a>
+
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <a class="dropdown-item active" href="#" id="ss11">Synth</a>
+                                    <a class="dropdown-item" href="#" id="ss1">AM Synth</a>
+                                    <a class="dropdown-item" href="#" id="ss2"> Duo Synth</a>
+                                    <a class="dropdown-item" href="#" id="ss3">FM Synth</a>
+                                    <a class="dropdown-item" href="#" id="ss4">Membrane Synth</a>
+                                    <a class="dropdown-item" href="#" id="ss6">Mono Synth</a>
+                                    <a class="dropdown-item" href="#" id="ss9">Pluck Synth</a>
+                                    <a class="dropdown-item" href="#" id="ss10">Poly Synth</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-lg-9">
+                    <div id="key-reminders">
+                        <p>Go ahead, mash some keys. We won't judge you!</p>
+                        <p>Change it up by choosing keyboard sounds in our dropdown menu.</p>
+                        <p>Visit our
+                            <a href="assets/html/playground.html" class="alert-link">Playground</a> for more!</p>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div id="keyboard">
+                            <ul class="set">
+                                <li class="white e" id="c"></li>
+                                <li class="black ds" id="cSharp"></li>
+                                <li class="white d" id="d"></li>
+                                <li class="black cs" id="dSharp"></li>
+                                <li class="white c" id="e"></li>
+                                <li class="white b" id="f"></li>
+                                <li class="black as" id="fSharp"></li>
+                                <li class="white a" id="g"></li>
+                                <li class="black gs" id="gSharp"></li>
+                                <li class="white g" id="a"></li>
+                                <li class="black fs" id="aSharp"></li>
+                                <li class="white f" id="b"></li>
+                                <li class="white e" id="c1"></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div id="key">
+                            <h3 class="key-title">Keyboard Guide</h3>
+                            <img class="img-keys" src="assets/images/keyboard-layout.jpg" max height=250px max width=475px>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- jQuery  -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <!-- tone.js -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tone/13.1.9/Tone.js"></script>
+        <!-- app javascript -->
+        <script type="text/javascript" src="assets/javascript/app.js"></script>
+        <!-- bootstrap -->
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+            crossorigin="anonymous"></script>
+
+</body>
+
+</html>
